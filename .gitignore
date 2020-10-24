@@ -1,0 +1,11 @@
+mypython
+flask_session
+*__pycache__*
+*/__pycache__/*
+*.pyc
+db.sqlite3
+*.DS_Store
+/*_session/
+venv
+.idea
+language_model/gpt

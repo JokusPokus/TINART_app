@@ -1,0 +1,9 @@
+flask
+flask_session
+sentencepiece
+numpy
+https://github.com/eventlet/eventlet/archive/master.zip
+attrs
+flask_socketio
+gevent
+gevent-websocket

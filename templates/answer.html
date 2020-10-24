@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Answer</title>
+</head>
+<body>
+
+<div id="answer">
+    <h1>Your question:</h1>
+    <p>{{ question }}</p>
+
+    <h1>The answer:</h1>
+    <p>{{ answer }}</p>
+</div>
+
+<div id="question">
+    <form method="POST" action="{{ url_for('answer') }}">
+        <input name="question" type="text" placeholder="Please enter a question.">
+        <button>Submit</button>
+    </form>
+</div>
+
+</body>
+</html>
