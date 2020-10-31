@@ -9,4 +9,4 @@ db.sqlite3
 venv
 .idea
 language_model/gpt
-language_model/gpt_lindner_without_pt
+language_model/gpt2-lindner
