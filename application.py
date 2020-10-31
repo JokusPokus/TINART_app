@@ -16,7 +16,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 
 # Load GPT-2 language model
 path_name = ".\language_model\gpt"
-# path_name = ...
+
 
 model_wrapper = load_model(path_name)
 
