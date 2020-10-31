@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 
-from language_model.inference_hf import load_model, generate_response
+from language_model.inference import load_model, generate_response
 
 
 app = Flask(__name__)
@@ -8,13 +8,14 @@ app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 
+
+# MODEL LOADING
 POLITICIAN = "lindner"
-N_UTTERANCES = 3
+PATH_TEMPLATE = ".\\language_model\\gpt2-{}"
+model_path = PATH_TEMPLATE.format(POLITICIAN)
 
-MODEL_PATH = f".\\language_model\\gpt2-{POLITICIAN}"
-
-# Load GPT-2 language model
-tokenizer, model = load_model(model_path=MODEL_PATH)
+# Load fine-tuned GPT-2 language model
+tokenizer, model = load_model(model_path=model_path)
 
 
 @app.route("/")
@@ -35,4 +36,5 @@ def message():
     return jsonify(answer=answer)
 
 
-app.run()
+if __name__ == "__main__":
+    app.run()
