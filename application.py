@@ -15,7 +15,7 @@ PATH_TEMPLATE = ".\\language_model\\gpt2-{}"
 model_path = PATH_TEMPLATE.format(POLITICIAN)
 
 # Load fine-tuned GPT-2 language model
-tokenizer, model = load_model(model_path=model_path)
+tokenizer, model = load_model(model_path=model_path, fine_tuned=True)
 
 
 @app.route("/")
@@ -30,9 +30,9 @@ def message():
     Generates and sends an answer to the original input message.
     """
     question = request.form.get("question")
-    print(question)
+    print("Received question:", question)
     answer = generate_response(question, model, tokenizer)
-    print(answer)
+    print("Generated answer:", answer)
     return jsonify(answer=answer)
 
 

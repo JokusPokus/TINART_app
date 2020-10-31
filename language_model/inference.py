@@ -27,7 +27,7 @@ def process_answer(answer: str, end_of_question: int) -> str:
     """
     answer = answer[end_of_question+1:]
 
-    special_tokens = [" [End_Question]", " [End_Answer]"]
+    special_tokens = ["[End_Question]", "[End_Answer]"]
 
     for token in special_tokens:
         while token in answer:
@@ -68,24 +68,34 @@ def generate_response(question: str, model: AutoModelWithLMHead, tokenizer: Auto
     return answer
 
 
-def load_model(model_path: str):
+def load_model(model_path: str, fine_tuned=False):
     """
     Loads a tokenizer and language model for natural language generation.
 
     @param model_path: Path that leads to the pretrained (and potentially fine-tuned)
     language model
+    @param fine_tuned: Uses the pre-trained model without fine tuning if False
     @return: A tokenizer and language model for language generation
     """
+    if not fine_tuned:
+        model_path = "anonymous-german-nlp/german-gpt2"
+
     tokenizer = AutoTokenizer.from_pretrained("anonymous-german-nlp/german-gpt2")
     model = AutoModelWithLMHead.from_pretrained(model_path)
+
     return tokenizer, model
 
 
-def main(politician):
+def main(politician=None):
     """
     Opens a dialogue with the language model for testing purposes.
     """
-    tokenizer, model = load_model(f".\\gpt2-{politician}\\")
+    if politician:
+        path = f".\\gpt2-{politician}\\"
+    else:
+        path = "anonymous-german-nlp/german-gpt2"
+
+    tokenizer, model = load_model(path)
 
     while True:
         question = input("Your sentence:   ")
@@ -97,6 +107,10 @@ def main(politician):
 
 
 if __name__ == "__main__":
-    test_politician = sys.argv[1]
+    try:
+        test_politician = sys.argv[1]
+    except IndexError:
+        test_politician = None
+
     main(test_politician)
 
