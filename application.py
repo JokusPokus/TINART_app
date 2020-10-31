@@ -14,7 +14,7 @@ N_UTTERANCES = 3
 MODEL_PATH = f".\\language_model\\gpt2-{POLITICIAN}"
 
 # Load GPT-2 language model
-tokenizer, model = load_model(politician=POLITICIAN, model_path=MODEL_PATH)
+tokenizer, model = load_model(model_path=MODEL_PATH)
 
 
 @app.route("/")

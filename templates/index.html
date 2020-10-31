@@ -91,12 +91,12 @@
             $('#chat').scrollTop($('#chat')[0].scrollHeight);
 
             const form = $(this);
-            const url = form.attr("action")
+            const url = form.attr("action");
 
             $.ajax({
                 url: url,
                 method: "POST",
-                async: false,
+                async: true,
                 data: {"question": question},
                 dataType: "json",
                 success: function (answer) {
