@@ -16,6 +16,8 @@ app.config["SESSION_TYPE"] = "filesystem"
 
 # Load GPT-2 language model
 path_name = ".\language_model\gpt"
+# path_name = ...
+
 model_wrapper = load_model(path_name)
 
 N_UTTERANCES = 3
@@ -37,6 +39,8 @@ def message():
         ws = request.environ["wsgi.websocket"]
         while True:
             prefix = ws.receive()
+            if not prefix:
+                return
             for i in range(N_UTTERANCES):
                 answer = generate_seq(model_wrapper, prefix)
                 answer = answer[len(prefix)+1:]
