@@ -11,9 +11,10 @@ app.config["SESSION_TYPE"] = "filesystem"
 POLITICIAN = "lindner"
 N_UTTERANCES = 3
 
+MODEL_PATH = f".\\language_model\\gpt2-{POLITICIAN}"
 
 # Load GPT-2 language model
-tokenizer, model = load_model(politician=POLITICIAN)
+tokenizer, model = load_model(politician=POLITICIAN, model_path=MODEL_PATH)
 
 
 @app.route("/")
@@ -28,10 +29,10 @@ def message():
     Generates and sends an answer to the original input message.
     """
     question = request.form.get("question")
+    print(question)
     answer = generate_response(question, model, tokenizer)
+    print(answer)
     return jsonify(answer=answer)
 
 
-if __name__ == "__main__":
-    http_server = WSGIServer(("0.0.0.0", 5000), app, handler_class=WebSocketHandler)
-    http_server.serve_forever()
+app.run()
