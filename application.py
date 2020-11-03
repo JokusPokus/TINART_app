@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 
 from language_model.inference import load_model, generate_response
-from language_model.sentiment import load_sentiment_classifier, classify_sentiment
+from language_model.sentiment import SentimentClassifier
 
 
 app = Flask(__name__)
@@ -21,7 +21,7 @@ tokenizer, model = load_model(model_path=model_path, fine_tuned=True)
 
 
 # Load sentiment classifier
-classifier = load_sentiment_classifier()
+classifier = SentimentClassifier()
 
 
 @app.route("/")
@@ -41,7 +41,7 @@ def message():
     answer = generate_response(question, model, tokenizer)
     print("Generated answer:", answer)
 
-    sentiment = classify_sentiment(answer, classifier)
+    sentiment = classifier.classify(answer)
 
     return jsonify(answer=answer, sentiment=sentiment)
 
