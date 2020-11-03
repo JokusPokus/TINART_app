@@ -7,6 +7,10 @@
 </head>
 <body>
 
+    <div>Politician's current sentiment: <strong id="sentiment"></strong></div>
+
+    <br><br>
+
     <textarea id="chat" cols="80" rows="20"></textarea><br><br>
 
     <form id="sendMessage" method="POST" action="/message">
@@ -15,6 +19,8 @@
         <input type="submit">
 
     </form>
+
+
 
 
 <script
@@ -100,7 +106,8 @@
                 data: {"question": question},
                 dataType: "json",
                 success: function (answer) {
-                    $('#chat').append(answer["answer"] + " ");
+                    $("#chat").append(answer["answer"] + " ");
+                    $("#sentiment").html(answer["sentiment"]["labels"][0])
                 }
             })
         })

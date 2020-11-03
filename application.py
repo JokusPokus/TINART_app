@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 
 from language_model.inference import load_model, generate_response
+from language_model.sentiment import load_sentiment_classifier, classify_sentiment
 
 
 app = Flask(__name__)
@@ -14,8 +15,13 @@ POLITICIAN = "lindner"
 PATH_TEMPLATE = ".\\language_model\\gpt2-{}"
 model_path = PATH_TEMPLATE.format(POLITICIAN)
 
+
 # Load fine-tuned GPT-2 language model
 tokenizer, model = load_model(model_path=model_path, fine_tuned=True)
+
+
+# Load sentiment classifier
+classifier = load_sentiment_classifier()
 
 
 @app.route("/")
@@ -31,9 +37,13 @@ def message():
     """
     question = request.form.get("question")
     print("Received question:", question)
+
     answer = generate_response(question, model, tokenizer)
     print("Generated answer:", answer)
-    return jsonify(answer=answer)
+
+    sentiment = classify_sentiment(answer, classifier)
+
+    return jsonify(answer=answer, sentiment=sentiment)
 
 
 if __name__ == "__main__":
