@@ -3,19 +3,25 @@ This modules provides a text classification pipeline
 for sentiment analysis.
 """
 
-from transformers import AutoTokenizer, AutoModelForSequenceClassification, pipeline
+from transformers import AutoTokenizer, AutoModelForSequenceClassification, pipeline, Pipeline
+from typing import Dict
 
 
-def load_sentiment_classifier(model="joeddav/xlm-roberta-large-xnli"):
+def load_sentiment_classifier(model="joeddav/xlm-roberta-large-xnli") -> Pipeline:
+    """
+    Loads pre-trained sentiment classifier.
+    @param model: reference to the huggingface xlm roberta model
+    @return: Pretrained classifier
+    """
     classifier = pipeline("zero-shot-classification",
                           model=model)
     return classifier
 
 
-def classify_sentiment(sequence,
-                       classifier,
+def classify_sentiment(sequence: str,
+                       classifier: Pipeline,
                        candidate_labels=("wütend", "empört", "ängstlich", "glücklich", "traurig", "schockiert"),
-                       hypothesis="Dieser Text ist {}."):
+                       hypothesis="Dieser Text ist {}.") -> Dict:
     """
     Classifies a given string w.r.t. the defined candidate labels inserted into the hypothesis.
 
@@ -34,7 +40,7 @@ def classify_sentiment(sequence,
     return estimation
 
 
-def test_sequence(classifier):
+def test_sequence(classifier: Pipeline):
     """
     Allows the user to enter a test sequence and prints sentiment estimations
     for different candidate labels.
@@ -67,6 +73,9 @@ def test_sequence(classifier):
 
 
 def main():
+    """
+    Lets the user input text for testing purposes.
+    """
     sentiment_classifier = load_sentiment_classifier()
     test_sequence(sentiment_classifier)
 
