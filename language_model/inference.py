@@ -9,20 +9,20 @@ import sys
 
 
 class ChatBot:
-    def __init__(self, model_path="anonymous-german-nlp/german-gpt2", politician: str = None):
+    def __init__(self, politician: str, model_path="anonymous-german-nlp/german-gpt2"):
+        self.politician = politician
         self.model_path = model_path
         self.tokenizer = AutoTokenizer.from_pretrained("anonymous-german-nlp/german-gpt2")
         self.model = AutoModelWithLMHead.from_pretrained(model_path)
-        self.politician = politician
 
-    @staticmethod
-    def _preprocess_question(question: str) -> str:
+    def _preprocess_question(self, question: str) -> str:
         """
         Processes a question string by appending an EOS token.
 
         return: The preprocessed question
         """
-        question += " [End_Question]"
+        if self.politician:
+            question += " [End_Question]"
         return question
 
     @staticmethod
@@ -94,7 +94,7 @@ if __name__ == "__main__":
         test_politician = None
         model_path = "anonymous-german-nlp/german-gpt2"
 
-    chatbot = ChatBot(model_path, test_politician)
+    chatbot = ChatBot(test_politician, model_path)
     chatbot.start_dialogue()
 
 
