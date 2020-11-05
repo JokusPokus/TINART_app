@@ -9,6 +9,11 @@ import sys
 
 
 class ChatBot:
+    """
+    A chatbot loads a language model and tokenizer and is able to generate
+    natural language based on a seed string.
+    """
+
     def __init__(self, politician: str, model_path="anonymous-german-nlp/german-gpt2"):
         self.politician = politician
         self.model_path = model_path

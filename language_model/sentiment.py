@@ -8,6 +8,13 @@ from typing import Dict, List
 
 
 class SentimentClassifier:
+    """A sentiment classifier loads a masked language model and accepts candidate labels
+    and a hypothesis about some piece of text.
+
+    It can then estimate which of the candidate labels completes the hypothesis w.r.t. to a
+    given piece of text. It also returns the according confidence scores between 0 and 1.
+    """
+
     def __init__(self,
                  model="joeddav/xlm-roberta-large-xnli",
                  candidate_labels=("wütend", "empört", "ängstlich", "glücklich", "traurig", "schockiert"),
