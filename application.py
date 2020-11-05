@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 
-from language_model.inference import load_model, generate_response
+from language_model.inference import ChatBot
 from language_model.sentiment import SentimentClassifier
 
 
@@ -17,7 +17,7 @@ model_path = PATH_TEMPLATE.format(POLITICIAN)
 
 
 # Load fine-tuned GPT-2 language model
-tokenizer, model = load_model(model_path=model_path, fine_tuned=True)
+chatbot = ChatBot(politician=POLITICIAN, model_path=model_path)
 
 
 # Load sentiment classifier
@@ -38,7 +38,7 @@ def message():
     question = request.form.get("question")
     print("Received question:", question)
 
-    answer = generate_response(question, model, tokenizer)
+    answer = chatbot.generate_response(question)
     print("Generated answer:", answer)
 
     sentiment = classifier.classify(answer)
