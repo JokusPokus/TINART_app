@@ -3,9 +3,12 @@ This modules provides functionality to generate natural language in response
 to a seed (the so-called question).
 """
 
-from transformers import AutoTokenizer, AutoModelWithLMHead
-from typing import Tuple
+import transformers
+from transformers import AutoTokenizer, AutoModelForCausalLM
+from typing import Tuple, List
 import sys
+
+transformers.logging.set_verbosity_error()
 
 
 class ChatBot:
@@ -18,7 +21,7 @@ class ChatBot:
         self.politician = politician
         self.model_path = model_path
         self.tokenizer = AutoTokenizer.from_pretrained("anonymous-german-nlp/german-gpt2")
-        self.model = AutoModelWithLMHead.from_pretrained(model_path)
+        self.model = AutoModelForCausalLM.from_pretrained(model_path)
 
     def _preprocess_question(self, question: str) -> str:
         """
@@ -92,14 +95,21 @@ class ChatBot:
 
 
 class TalkshowGuests(dict):
+    """
+    Creates a dictionary where keys are politician names
+    and values are the corresponding chatbots.
+    """
     path_template = ".\\language_model\\gpt2-{}"
 
-    def __init__(self, politicians):
+    def __init__(self, politicians: List):
         super(TalkshowGuests, self).__init__()
 
         for politician in politicians:
             model_path = self.path_template.format(politician)
             chatbot = ChatBot(politician, model_path)
+
+            print(f"Model for politician {politician.capitalize()} has been loaded.")
+
             super().__setitem__(politician, chatbot)
 
 
