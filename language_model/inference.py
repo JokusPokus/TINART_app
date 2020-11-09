@@ -69,7 +69,7 @@ class ChatBot:
         sample_output = self.model.generate(
             input_ids,
             do_sample=True,
-            max_length=100,
+            max_length=60,
             top_p=0.9,  # nucleus sampling
             top_k=0,  # top-k disabled
         )

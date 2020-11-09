@@ -93,7 +93,7 @@
             // Append message to chat field
             let question = $('#text').val();
             $('#text').val('');
-            $('#chat').append("\n\n" + question + "\n\n");
+            $('#chat').append("[User] " + question + "\n\n");
             $('#chat').scrollTop($('#chat')[0].scrollHeight);
 
             const form = $(this);
@@ -105,9 +105,9 @@
                 async: true,
                 data: {"question": question},
                 dataType: "json",
-                success: function (answer) {
-                    $("#chat").append(answer["answer"] + " ");
-                    $("#sentiment").html(answer["sentiment"]["labels"][0])
+                success: function (next_utterance) {
+                    $("#chat").append("[" + next_utterance["next_speaker"] + "] " + next_utterance["answer"] + "\n\n");
+                    $("#sentiment").html(next_utterance["sentiment"]["labels"][0])
                 }
             })
         })

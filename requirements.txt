@@ -1,5 +1,5 @@
 flask
-flask_session
+Flask_Session
 sentencepiece
 numpy
 attrs
