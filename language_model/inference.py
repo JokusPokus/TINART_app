@@ -91,6 +91,18 @@ class ChatBot:
             print(answer)
 
 
+class TalkshowGuests(dict):
+    path_template = ".\\language_model\\gpt2-{}"
+
+    def __init__(self, politicians):
+        super(TalkshowGuests, self).__init__()
+
+        for politician in politicians:
+            model_path = self.path_template.format(politician)
+            chatbot = ChatBot(politician, model_path)
+            super().__setitem__(politician, chatbot)
+
+
 if __name__ == "__main__":
     try:
         test_politician = sys.argv[1]

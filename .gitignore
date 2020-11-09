@@ -10,3 +10,4 @@ venv
 .idea
 language_model/gpt
 language_model/gpt2-lindner
+language_model/gpt2-wagenknecht

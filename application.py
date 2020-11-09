@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 
-from language_model.inference import ChatBot
+from language_model.inference import TalkshowGuests
 from language_model.sentiment import SentimentClassifier
 
 
@@ -10,14 +10,8 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 
 
-# MODEL LOADING
-POLITICIAN = "lindner"
-PATH_TEMPLATE = ".\\language_model\\gpt2-{}"
-model_path = PATH_TEMPLATE.format(POLITICIAN)
-
-
-# Load fine-tuned GPT-2 language model
-chatbot = ChatBot(politician=POLITICIAN, model_path=model_path)
+# Load language models
+chatbots = TalkshowGuests(politicians=["lindner", "wagenknecht"])
 
 
 # Load sentiment classifier
@@ -38,7 +32,7 @@ def message():
     question = request.form.get("question")
     print("Received question:", question)
 
-    answer = chatbot.generate_response(question)
+    answer = chatbots["lindner"].generate_response(question)
     print("Generated answer:", answer)
 
     sentiment = classifier.classify(answer)
