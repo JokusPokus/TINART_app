@@ -22,7 +22,10 @@ class SentimentClassifier:
         self.model = model
         self.candidate_labels = candidate_labels
         self.hypothesis = hypothesis
+
+        print("\nLoading Sentiment Classifier...")
         self.classifier = pipeline("zero-shot-classification", model=self.model)
+        print("Done.\n")
 
     def classify(self, sequence: str, labels: List[str] = None) -> Dict:
         """
@@ -44,6 +47,10 @@ class SentimentClassifier:
             "scores": sentiments["scores"],
             "sequence": sentiments["sequence"]
         }
+        print("Estimated sentiment: {} ({} %)".format(
+            estimate['labels'][0],
+            round(estimate['scores'][0] * 100)
+        ))
         return estimate
 
     def _print_test(self, sequence, labels):

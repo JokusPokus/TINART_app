@@ -104,11 +104,14 @@ class TalkshowGuests(dict):
     def __init__(self, politicians: List):
         super(TalkshowGuests, self).__init__()
 
+        print("Start loading models...")
+
         for politician in politicians:
             model_path = self.path_template.format(politician)
-            chatbot = ChatBot(politician, model_path)
 
-            print(f"Model for politician {politician.capitalize()} has been loaded.")
+            print(f"Creating ChatBot for {politician.capitalize()}...")
+            chatbot = ChatBot(politician, model_path)
+            print("Done.")
 
             super().__setitem__(politician, chatbot)
 
