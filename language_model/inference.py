@@ -29,8 +29,7 @@ class ChatBot:
 
         return: The preprocessed question
         """
-        if self.politician:
-            question += " [End_Question]"
+
         return question
 
     @staticmethod
@@ -41,7 +40,7 @@ class ChatBot:
 
         @return: Processed answer string.
         """
-        special_tokens = ["[End_Question]", "[End_Answer]"]
+        special_tokens = ["<EOQ>"]
 
         for token in special_tokens:
             while token in answer:
@@ -53,6 +52,10 @@ class ChatBot:
             answer.rfind("!"),
             answer.rfind("?"),
         )
+
+        if last_EOS == -1:
+            return answer + "..."
+
         return answer[:last_EOS + 1]
 
     def generate_response(self, question: str) -> str:
@@ -64,13 +67,14 @@ class ChatBot:
         """
         question = self._preprocess_question(question)
         question_len = len(question)
+
         input_ids = self.tokenizer.encode(question, return_tensors="pt")
 
         sample_output = self.model.generate(
             input_ids,
             do_sample=True,
-            max_length=60,
-            top_p=0.9,  # nucleus sampling
+            max_length=100,
+            top_p=0.6,  # nucleus sampling
             top_k=0,  # top-k disabled
         )
         answer = self.tokenizer.decode(sample_output[0], skip_special_tokens=True)
