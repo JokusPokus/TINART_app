@@ -1,0 +1,649 @@
+/*
+    TINART Project website 1.0
+    Igor Lapinski
+    CODE Universtiy of Applied Sciences Berlin
+*/
+
+/*
+    General structure
+*/
+html,
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #141E26;
+    color: white;
+}
+
+/*
+    Typography
+*/
+
+h1,
+h2,
+h3,
+h4,
+p {
+    color: white;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+h1 {
+    font-size: 84px;
+    line-height: 92px;
+}
+
+h2 {
+    font-size: 60px;
+    line-height: 66px;
+}
+
+h3 {
+    font-size: 48px;
+    line-height: 52px;
+}
+
+h4 {
+    font-size: 36px;
+    line-height: 40px;
+}
+
+p[type="lead"] {
+    font-size: 24px;
+    line-height: 36px;
+}
+
+p {
+    font-size: 18px;
+    line-height: 27px;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+a:hover {
+    color: #F2F2F2;
+}
+
+a:active {
+    filter: brightness(0.9);
+    transform: scale(0.95);
+    transition: all 0.2s ease-out;
+}
+
+/*
+    Buttons general
+*/
+
+button {
+    padding: 10px 30px;
+    font-weight: 700;
+    border: none;
+    letter-spacing: 1px;
+    outline: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+button:active {
+    filter: brightness(0.9);
+    transform: scale(0.95);
+    transition: all 0.1s ease-out;
+}
+
+/*
+    Colored buttons
+*/
+
+button[color="red"] {
+    background-color: #E72333;
+    color: white;
+}
+
+button[color="red"]:hover {
+    background-color: #93101B;
+}
+
+button[color="white"] {
+    background-color: white;
+    color: #141E26;
+}
+
+button[color="white"]:hover {
+    background-color: #F2F2F2;
+}
+
+button[size="big"] {
+    font-size: 18px;
+    padding: 15px 100px;
+}
+
+/*
+    Input & Textarea
+*/
+
+input,
+textarea {
+    padding: 10px;
+    background: #283037;
+    color: white;
+    font-weight: 700;
+    border: none;
+    letter-spacing: 1px;
+    outline: none;
+}
+
+/*
+    Header & navigation
+*/
+
+header {
+    background: linear-gradient(180deg,#00000090,#00000000);
+    position: sticky;
+    width: 100vw;
+    top: 0;
+}
+
+header nav {
+    display: flex;
+    padding: 20px;
+    justify-content: space-between;
+}
+
+header nav .logo {
+    height: 60px;
+    width: 150px;
+    background-image: url(../img/tinart_logo.png);
+    background-size: 150px;
+    background-position: 0px -26px;
+}
+
+header nav ul {
+    display: flex;
+}
+
+header nav ul li {
+    margin: 0 30px;
+    list-style: none;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+}
+
+header nav ul li  a {
+    position: relative;
+    padding-bottom: 15px;
+}
+
+header nav ul li a:after {    
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 2px;
+    right: 0px;
+    position: absolute;
+    background: #fff;
+    transition: width 0.3s ease 0s, right 0.3s ease 0s;
+    width: 0;
+  }
+
+  header nav ul li a:hover:after { 
+    width: 100%; 
+    left: 0; 
+  }
+
+.background-video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    filter: blur(300px);
+}
+
+button.exit {
+    padding: 10px;
+    border-radius: 10px;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+}
+
+button.exit img {
+    height: 24px;
+    margin-bottom: -3px;
+}
+
+.logo-big {
+    height: 200px;
+    background-image: url(../img/tinart_logo.png);
+    background-size: 420px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.welcome-box,
+.select-player {
+    background-color: #00000050;
+    border-radius: 15px;
+    box-shadow: 0 5px 5px #00000020;
+}
+
+.welcome-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2em;
+    max-width: 600px;
+}
+
+.welcome-box h3 {
+    text-align: center;
+    margin-top: 0;
+}
+
+.welcome-box button {
+    margin: 10px 0;
+    width: 100%;
+}
+
+.select-player {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2em;
+    width: 75vw;
+    max-width: 1000px;
+}
+
+.select-player h3 {
+    text-align: center;
+    margin-top: 0;
+}
+
+.select-player .players-box {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+}
+
+.select-player .players-box .player {
+    transition: ease-out background-color 0.2s;
+    margin: 20px 20px 20px 0;
+    padding: 20px;
+    width: 200px;
+}
+
+.select-player .players-box .player.selected {
+    background-color: #00000030;
+    border-radius: 10px;
+}
+
+.select-player .players-box .player:hover {
+    background-color: #00000020;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.select-player .players-box .player .picture {
+    display: block;
+    margin: 0 auto 10px auto;
+    width: 150px;
+    height: 150px;
+    border-radius: 100px;
+    margin-bottom: 10px;
+    background-color: black;
+    background-size: cover;
+    background-position: center;
+}
+
+.select-player .players-box .player p {
+    margin: 0;
+    text-align: center;
+}
+
+.select-player button {
+    margin: 10px 0;
+    width: 100%;
+}
+
+.speaker {
+    position: absolute;
+    top: 45vh;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 300px;
+    max-height: 300px;
+    width: 50vw;
+    height: 50vw;
+    border-radius: 150px;
+    margin-bottom: 10px;
+    background-color: black;
+    background-size: cover;
+    background-position: center;
+    background-image: url(../img/politicians/001.jpg);
+    animation: speaker-active 2s ease-out infinite;
+}
+
+@keyframes speaker-active {
+    0%   {    box-shadow: 0 0 0 0px #93101b;}
+    100% {    box-shadow: 0 0 0 30px #93101b00;}
+}
+
+.subtitles {
+    position: absolute;
+    bottom: 130px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 900px;
+    color: white;
+    text-shadow: 0 2px 5px #00000015;
+    font-size: 24px;
+    text-align: center;
+    user-select: none;
+}
+
+.subtitles > mark {
+    background-color: #00000020;
+    color: white;
+    padding: 0 20px;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+}
+
+.chatbox {
+    position: absolute;
+    height: 70px;
+    width: 80vw;
+    max-width: 1000px;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #00000050;
+    border-radius: 15px;
+    box-shadow: 0 5px 5px #00000020;
+}
+
+.chatbox > button {
+    padding: 10px;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.chatbox > button.settings {
+    left: 15px;
+}
+
+.chatbox > button.send {
+    right: 15px;
+}
+
+.chatbox > button > img {
+    height: 24px;
+    margin-bottom: -3px;
+}
+
+.chatbox > input {
+    position: absolute;
+    height: 24px;
+    width: calc(100% - 45px - 45px - (15px * 5));
+    top: 50%;
+    left: calc(44px + 15px + 15px);
+    transform: translateY(-50%);
+    border-radius: 10px;
+    background: #00000050;
+}
+
+/*
+    +++ Landing page +++
+    
+    Content general
+*/
+
+section {
+    padding: 10vh 10vw;
+}
+
+/*
+    Starting section
+*/
+
+section#start .center-block {
+    display: block;
+    margin: auto;
+    text-align: center;
+    max-width: 800px;
+}
+
+section#start .studio-preview {
+    background-color: #ffffff10;
+    height: 45vh;
+    max-height: 600px;
+    max-width: 1000px;
+    margin: 5vh auto;
+}
+
+/*
+    Newsletter section
+*/
+
+section#newsletter {
+    display: block;
+    max-width: 1000px;
+    margin: auto;  
+    padding: 3vh 10vw;
+}
+
+section#newsletter .container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+section#newsletter .container .text {
+    width: 50%;
+    min-width: 300px;
+}
+
+section#newsletter .container .form {
+    display: inline-flex;
+    width: 50%;
+    margin-top: 2em;
+    min-width: 300px;
+    max-height: 40px;
+}
+
+@media(max-width: 770px) {
+    section#newsletter .container .text,
+    section#newsletter .container .form {
+        width: 100%;
+    }
+}
+
+section#newsletter .container .form input {
+    margin-left: 10px;
+    width: calc(80% - 15px);
+}
+
+@media(max-width: 770px) {
+    section#newsletter .container .form input {
+        margin-left: 0;
+    } 
+}
+
+section#newsletter .container .form button {
+    margin: 0 0 0 10px;
+}
+
+/*
+    Team section
+*/
+
+section#team {
+    height: 100%;
+    max-height: none;
+}
+
+section#team .container {
+    display: block;
+    max-width: 1000px;
+    margin: auto;   
+}
+
+section#team .description {
+    max-width: 1000px;
+}
+
+section#team .team-profiles {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+section#team .team-profiles .member {
+    width: calc(33% - 40px);
+    min-width: 200px;
+    margin: 0 5px 0 0;
+}
+
+@media(max-width: 770px) {
+    section#team .team-profiles .member {
+        min-width: 100%;
+    }
+}
+
+section#team .team-profiles .member .picture {
+    height: 300px;
+    width: auto;
+    background-color: #283037;
+    background-size: cover;
+    background-position: center;
+    border-radius: 5px;
+}
+
+section#team .team-profiles .member .picture#jakob {
+    background-image: url(../img/team/jakob.jpeg);
+}
+
+section#team .team-profiles .member .picture#igor {
+    background-image: url(../img/team/igor.jpeg);
+}
+
+section#team .team-profiles .member .picture#victor {
+    background-image: url(../img/team/victor.jpeg);
+}
+
+@media(min-width: 771px) and (max-width: 1000px) {
+    section#team .team-profiles .member .picture {
+        height: 220px;
+    }
+}
+
+section#team .team-profiles .member .text h4 {
+    margin-bottom: 0;
+}
+
+section#team .team-profiles .member .text p {
+    margin-top: 0;
+}
+
+/*
+    Contact section
+*/
+
+section#contact {
+    display: block;
+    max-width: 1000px;
+    margin: auto;  
+}
+
+section#contact .container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+section#contact .container .text {
+    width: 50%;
+    min-width: 300px;
+}
+
+section#contact .container .form {
+    width: 50%;
+    min-width: 300px;
+    white-space: break-spaces;
+}
+
+
+@media(max-width: 770px) {
+    section#contact .container .text,
+    section#contact .container .form {
+        width: 100%;
+    }
+}
+
+section#contact .container .form input,
+section#contact .container .form textarea{
+    margin-left: 10px;
+    width: calc(100% - 30px);
+}
+
+section#contact .container .form textarea {
+    resize: vertical;
+    min-height: 15px;
+    height: 130px;
+    max-height: 200px;
+}
+
+section#contact .container .form button {
+    width: calc(100% - 10px);
+    float: left;
+    margin: 10px 0 0 10px;
+}
+
+@media(max-width: 770px) {
+    section#contact .container .form input,
+    section#contact .container .form textarea,
+    section#contact .container .form button {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+/*
+    Footer & navigation
+*/
+footer {
+    display: block;
+    max-width: 1000px;
+    margin: auto;
+}
+
+footer nav {
+    display: flex;
+    padding: 20px;
+    justify-content: space-between;
+}
+
+footer nav ul {
+    display: flex;
+}
+
+footer nav ul li {
+    margin: 0 30px;
+    list-style: none;
+}

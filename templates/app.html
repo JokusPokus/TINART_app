@@ -1,0 +1,38 @@
+<!DOCTYPE html> 
+<html lang="de">
+    <head>
+        <!-- Meta tags -->
+        <meta http-equiv="content-Type" content="text/html; utf-8" />
+        <!-- <meta http-equiv="Pragma" content="cache" /> -->
+        <meta name="robots" content="INDEX,FOLLOW" />
+        <meta http-equiv="content-Language" content="de" />
+        <meta name="description" content="ThisIsNotARealTalkshow is an art/entertainment project that wants to highlight the triviality of German political talk shows by allowing everybody to create their own." />
+        <meta name="keywords" content="TINART ThisIsNotARealTalkshow NLP AI 3D talkshow politics simulation" />
+        <meta name="author" content="Igor Lapinski" />
+        <meta name="publisher" content="Igor Lapinski" />
+        <meta http-equiv="Reply-to" content="igor.lapinski@code.berlin" />
+        <meta name="revisit-after" content="7 days" />
+
+        <!-- CSS -->
+        <link href="./assets/css/style.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+        <title>
+            TINART App
+        </title>
+    </head>
+    <body>
+
+        <video autoplay muted loop class="background-video" id="backgroundVideo">
+            <source src="./assets/img/video/bg_red-lines.mp4" type="video/mp4">
+          </video>
+
+        <button class="exit" color="red" onclick="location.href='../index.html';">
+            <img src="./assets/img/icons/close-fullscreen.svg">
+        </button>
+    </body>
+    <script src="./assets/js/tinart_app.js"></script>
+    <script>
+        document.getElementById('backgroundVideo').playbackRate = 0.8;
+    </script>
+</html>
