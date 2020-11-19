@@ -17,7 +17,7 @@ class SentimentClassifier:
 
     def __init__(self,
                  model="joeddav/xlm-roberta-large-xnli",
-                 candidate_labels=("wütend", "empört", "ängstlich", "glücklich", "traurig", "schockiert"),
+                 candidate_labels=("wütend", "ängstlich", "glücklich", "traurig", "schockiert"),
                  hypothesis="Dieser Text ist {}."):
         self.model = model
         self.candidate_labels = candidate_labels
