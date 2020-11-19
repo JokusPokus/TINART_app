@@ -23,7 +23,12 @@ classifier = SentimentClassifier()
 @app.route("/")
 def index():
     session["conversation"] = Conversation(guests)
-    return render_template("index.html")
+    return render_template("landing.html")
+
+
+@app.route("/simulator")
+def start_simulator():
+    return render_template("app.html")
 
 
 @app.route("/message", methods=["POST"])

@@ -40,7 +40,7 @@ class ChatBot:
 
         @return: Processed answer string.
         """
-        special_tokens = ["<EOQ>"]
+        special_tokens = ["<EOQ>", '"']
 
         for token in special_tokens:
             while token in answer:
@@ -73,7 +73,7 @@ class ChatBot:
         sample_output = self.model.generate(
             input_ids,
             do_sample=True,
-            max_length=100,
+            max_length=80,
             top_p=0.6,  # nucleus sampling
             top_k=0,  # top-k disabled
         )
