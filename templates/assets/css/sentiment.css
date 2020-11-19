@@ -1,0 +1,61 @@
+@charset "utf-8";
+
+/* Lindner */
+
+.speaker[person="lindner"][sentiment="none"] {
+    background-image: url(../img/politicians/001.jpg);
+}
+
+.speaker[person="lindner"][sentiment="ängstlich"] {
+    background-image: url(../img/politicians/lindner/ängstlich.png);
+}
+
+.speaker[person="lindner"][sentiment="empört"] {
+    background-image: url(../img/politicians/lindner/empört.png);
+}
+
+.speaker[person="lindner"][sentiment="glücklich"] {
+    background-image: url(../img/politicians/lindner/glücklich.png);
+}
+
+.speaker[person="lindner"][sentiment="schockiert"] {
+    background-image: url(../img/politicians/lindner/schockiert.png);
+}
+
+.speaker[person="lindner"][sentiment="traurig"] {
+    background-image: url(../img/politicians/lindner/traurig.png);
+}
+
+.speaker[person="lindner"][sentiment="wütend"] {
+    background-image: url(../img/politicians/lindner/wütend.png);
+}
+
+/* Wagenknecht */
+
+.speaker[person="wagenknecht"][sentiment="none"] {
+    background-image: url(../img/politicians/001.jpg);
+}
+
+.speaker[person="wagenknecht"][sentiment="ängstlich"] {
+    background-image: url(../img/politicians/wagenknecht/ängstlich.png);
+}
+
+.speaker[person="wagenknecht"][sentiment="empört"] {
+    background-image: url(../img/politicians/wagenknecht/empört.png);
+}
+
+.speaker[person="wagenknecht"][sentiment="glücklich"] {
+    background-image: url(../img/politicians/wagenknecht/glücklich.png);
+}
+
+.speaker[person="wagenknecht"][sentiment="schockiert"] {
+    background-image: url(../img/politicians/wagenknecht/schockiert.png);
+}
+
+.speaker[person="wagenknecht"][sentiment="traurig"] {
+    background-image: url(../img/politicians/wagenknecht/traurig.png);
+}
+
+.speaker[person="wagenknecht"][sentiment="wütend"] {
+    background-image: url(../img/politicians/wagenknecht/wütend.png);
+}

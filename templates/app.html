@@ -15,8 +15,9 @@
 
         <!-- CSS -->
         <link href="./assets/css/style.css" rel="stylesheet">
+        <link href="./assets/css/sentiment.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
         <title>
             TINART App
         </title>
@@ -30,9 +31,55 @@
         <button class="exit" color="red" onclick="location.href='../index.html';">
             <img src="./assets/img/icons/close-fullscreen.svg">
         </button>
+
+        <div class="discussion-view">
+            <div class="speaker" id="speaker" person="none" sentiment="none"></div>
+            <div class="subtitles" id="subtitles">
+                
+            </div>
+    
+            <div class="chatbox">
+                <form id="sendMessage" method="POST" action="/message">
+                    <button class="settings" color="red">
+                        <img src="./assets/img/icons/settings.svg">
+                    </button>
+                    <input id="text" placeholder="Type your message...">
+                    </input>
+                    <button type="submit" class="send" color="red">
+                        <img src="./assets/img/icons/send.svg">
+                    </button>
+                </form>
+            </div>
+        </div>
     </body>
     <script src="./assets/js/tinart_app.js"></script>
     <script>
         document.getElementById('backgroundVideo').playbackRate = 0.8;
     </script>
+    <script>
+    $("#sendMessage").submit(function (event) {
+        event.preventDefault();
+
+        // Append message to chat field
+        let question = $('#text').val();
+        $('#text').val('');
+        // $('#chat').scrollTop($('#chat')[0].scrollHeight);
+
+        const form = $(this);
+        const url = form.attr("action");
+
+        $.ajax({
+            url: url,
+            method: "POST",
+            async: true,
+            data: {"question": question},
+            dataType: "json",
+            success: function (next_utterance) {
+                $('#subtitles').html("<mark><b>[" + next_utterance["next_speaker"] + "]</b> " + next_utterance["answer"] + "</mark>");
+                $("#speaker").attr('person', next_utterance["next_speaker"]);
+                $("#speaker").attr('sentiment', next_utterance["sentiment"]["labels"][0]);
+            }
+        })
+    })
+</script>
 </html>
