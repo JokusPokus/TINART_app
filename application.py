@@ -42,7 +42,7 @@ def message():
 
     return jsonify(next_speaker=next_speaker.capitalize(),
                    answer=answer,
-                   sentiment=sentiment)
+                   sentiment=sentiment["labels"][0])
 
 
 if __name__ == "__main__":
