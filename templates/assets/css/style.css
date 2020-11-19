@@ -321,6 +321,10 @@ button.exit img {
     width: 100%;
 }
 
+.discussion-view {
+    display: none;
+}
+
 .speaker {
     position: absolute;
     top: 45vh;
@@ -332,10 +336,9 @@ button.exit img {
     height: 50vw;
     border-radius: 150px;
     margin-bottom: 10px;
-    background-color: black;
+    background-color: #00000020;
     background-size: cover;
     background-position: center;
-    background-image: url(../img/politicians/001.jpg);
     animation: speaker-active 2s ease-out infinite;
 }
 
@@ -378,7 +381,7 @@ button.exit img {
     box-shadow: 0 5px 5px #00000020;
 }
 
-.chatbox > button {
+.chatbox > form > button {
     padding: 10px;
     border-radius: 10px;
     position: absolute;
@@ -386,20 +389,20 @@ button.exit img {
     transform: translateY(-50%);
 }
 
-.chatbox > button.settings {
+.chatbox > form > button.settings {
     left: 15px;
 }
 
-.chatbox > button.send {
+.chatbox > form > button.send {
     right: 15px;
 }
 
-.chatbox > button > img {
+.chatbox > form > button > img {
     height: 24px;
     margin-bottom: -3px;
 }
 
-.chatbox > input {
+.chatbox > form > input {
     position: absolute;
     height: 24px;
     width: calc(100% - 45px - 45px - (15px * 5));

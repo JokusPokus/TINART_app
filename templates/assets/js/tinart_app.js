@@ -7,8 +7,10 @@ function initApp() {
 
 function newSimulation() {
     welcomeScreen.dismiss();
-    playerSelectionScreen = new playerSelectionView;
-    playerSelectionScreen.init();
+    // playerSelectionScreen = new playerSelectionView;
+    // playerSelectionScreen.init();
+    discussionScreen = new discussionView;
+    discussionScreen.init();
 }
 
 function openSettings() {
@@ -16,12 +18,12 @@ function openSettings() {
 }
 
 function selectPlayer(player) {
-    selectedPlayer = player;
-    // topic selection disabled for MVP
-    // openTopicSelection();
-    playerSelectionScreen.dismiss();
-    discussionScreen = new discussionView;
-    discussionScreen.init();
+    // selectedPlayer = player;
+    // // topic selection disabled for MVP
+    // // openTopicSelection();
+    // playerSelectionScreen.dismiss();
+    // discussionScreen = new discussionView;
+    // discussionScreen.init();
 }
 
 function openTopicSelection() {
@@ -36,8 +38,6 @@ function startDiscussionMode() {
     discussionScreen.init();
 }
 
-
-
 class welcomeScreenModal {
     constructor() {
 
@@ -47,9 +47,6 @@ class welcomeScreenModal {
                     <div class="logo-big"></div>
                     <button color="red" size="big" onclick="newSimulation()">
                         New simulation
-                    </button>
-                    <button color="red" size="big" onclick="openSettings()">
-                        Settings
                     </button>
                 </div>`;
 
@@ -132,7 +129,6 @@ class playerSelectionView {
         modalElement.parentElement.removeChild(modalElement);
     }
 
-    se
 }
 
 class topicSelectionView {
@@ -196,31 +192,9 @@ class discussionView {
 
     }
 
-    template = `<div class="discussion-view">
-                    <div class="speaker"></div>
-                    <div class="subtitles">
-                        <mark>
-                            <b>[Moderator] </b>
-                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-                        </mark>
-                    </div>
-                    <div class="chatbox">
-                        <button class="settings" color="red">
-                            <img src="../assets/img/icons/settings.svg">
-                        </button>
-                        <input placeholder="Type your message...">
-                        </input>
-                        <button class="send" color="red">
-                            <img src="../assets/img/icons/send.svg">
-                        </button>
-                    </div>
-                </div>`;
-
     init() {
-        var bodyElement = document.getElementsByTagName('body')[0];
-        var modalElement = document.createElement('div');
-        modalElement.innerHTML = this.template;
-        bodyElement.appendChild(modalElement);
+        var element = document.getElementsByClassName('discussion-view')[0];
+        element.style.display = "block";
     }
 
     dismiss() {
