@@ -73,8 +73,8 @@ class ChatBot:
         sample_output = self.model.generate(
             input_ids,
             do_sample=True,
-            max_length=80,
-            top_p=0.6,  # nucleus sampling
+            max_length=60,
+            top_p=0.8,  # nucleus sampling
             top_k=0,  # top-k disabled
         )
         answer = self.tokenizer.decode(sample_output[0], skip_special_tokens=True)
