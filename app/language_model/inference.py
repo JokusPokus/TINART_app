@@ -23,12 +23,14 @@ class ChatBot:
         self.tokenizer = AutoTokenizer.from_pretrained("anonymous-german-nlp/german-gpt2")
         self.model = AutoModelForCausalLM.from_pretrained(model_path)
 
-    def _preprocess_question(self, question: str) -> str:
+    @staticmethod
+    def _preprocess_question(question: str) -> str:
         """
-        Processes a question string by appending an EOS token.
+        Processes a question string by appending an EOQ token.
 
         return: The preprocessed question
         """
+        question += "<EOQ>"
 
         return question
 
@@ -40,7 +42,7 @@ class ChatBot:
 
         @return: Processed answer string.
         """
-        special_tokens = ["<EOQ>", '"']
+        special_tokens = ["<EOQ>", " <EOQ>", '"', '„']
 
         for token in special_tokens:
             while token in answer:
@@ -53,10 +55,11 @@ class ChatBot:
             answer.rfind("?"),
         )
 
+        # In case the first sentence is very long
         if last_EOS == -1:
             return answer + "..."
 
-        return answer[:last_EOS + 1]
+        return answer[0].upper() + answer[1:last_EOS + 1]
 
     def generate_response(self, question: str) -> str:
         """
@@ -80,7 +83,7 @@ class ChatBot:
         answer = self.tokenizer.decode(sample_output[0], skip_special_tokens=True)
 
         # Cut off question (which is part of the answer by default)
-        answer = self._process_answer(answer[question_len+1:])
+        answer = self._process_answer(answer[question_len:])
 
         return answer
 
@@ -103,7 +106,7 @@ class TalkshowGuests(dict):
     Creates a dictionary where keys are politician names
     and values are the corresponding chatbots.
     """
-    path_template = ".\\language_model\\gpt2-{}"
+    path_template = "app\\language_model\\gpt2-{}"
 
     def __init__(self, politicians: List):
         super(TalkshowGuests, self).__init__()

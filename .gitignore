@@ -8,6 +8,6 @@ db.sqlite3
 /*_session/
 venv
 .idea
-language_model/gpt
-language_model/gpt2-lindner
-language_model/gpt2-wagenknecht
+app/language_model/gpt
+app/language_model/gpt2-lindner
+app/language_model/gpt2-wagenknecht

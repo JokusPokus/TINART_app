@@ -4,6 +4,7 @@ Functionality for conversation management.
 
 import random
 from typing import List
+from .inference import TalkshowGuests
 
 SETTINGS = {
     "politicians": {
@@ -27,8 +28,8 @@ class Conversation:
         @param guests: Instance of the TalkshowGuests class (a dictionary containing
         the individual chatbots of all the guests)
         """
-        self.guests = guests
-        self.guest_list = list(guests.keys())
+        self.guest_list = guests
+        self.guests = TalkshowGuests(guests)
 
         # Keep track of number of utterances per guest and in total
         self.convo_log = {guest: 0 for guest in self.guest_list}
@@ -54,6 +55,10 @@ class Conversation:
         self.total_utterances += 1
 
     def _addressed_guest(self, question):
+        """
+        Returns name of guest that was directly addressed by user.
+        If no guest was addressed, returns None.
+        """
         candidates = []
         for guest in self.guests:
             aliases = SETTINGS["politicians"][guest]["aliases"]
@@ -63,6 +68,10 @@ class Conversation:
         return random.choice(candidates) if candidates else None
 
     def _quiet_guest(self):
+        """
+        Returns a guest's name, where a guest is more likely to be selected
+        if they haven't said that much so far.
+        """
         if self.total_utterances == 0:
             return random.choice(self.guest_list)
 
@@ -77,6 +86,9 @@ class Conversation:
         return random.choices(candidates, weights=probs_of_speaking)[0]
 
     def _next_speaker(self, question):
+        """
+        Determines and returns the next speaker, given the user's seed question.
+        """
         next_speaker = self._addressed_guest(question)
 
         if not next_speaker:
@@ -85,6 +97,9 @@ class Conversation:
         return next_speaker
 
     def next_utterance(self, question):
+        """
+        Returns next utterance after the user's seed question.
+        """
         next_speaker = self._next_speaker(question)
         self._update_logs(next_speaker)
         answer = self.guests[next_speaker].generate_response(question)
