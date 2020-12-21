@@ -106,7 +106,7 @@ class TalkshowGuests(dict):
     Creates a dictionary where keys are politician names
     and values are the corresponding chatbots.
     """
-    path_template = "app\\language_model\\gpt2-{}"
+    path_template = "app\\conversation\\gpt2-{}"
 
     def __init__(self, politicians: List):
         super(TalkshowGuests, self).__init__()
@@ -126,7 +126,7 @@ class TalkshowGuests(dict):
 if __name__ == "__main__":
     try:
         test_politician = sys.argv[1]
-        model_path = f".\\language_model\\gpt2-{test_politician}"
+        model_path = f".\\conversation\\gpt2-{test_politician}"
     except IndexError:
         test_politician = None
         model_path = "anonymous-german-nlp/german-gpt2"

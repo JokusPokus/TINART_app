@@ -8,6 +8,21 @@ db.sqlite3
 /*_session/
 venv
 .idea
-app/language_model/gpt
-app/language_model/gpt2-lindner
-app/language_model/gpt2-wagenknecht
+app/conversation/gpt
+app/conversation/gpt2-lindner
+app/conversation/gpt2-wagenknecht
+
+# Distribution / packaging
+bin/
+build/
+develop-eggs/
+dist/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
