@@ -62,6 +62,12 @@ python application.py
 Note that iOS users need to replace the `pip` and `python` commands
 with `pip3` and `python3`, respectively.
 
+You may also wish to install the app in your virtual environment. Make sure to navigate to the Nim_AI root directory and execute:
+
+```s
+pip install -e .
+```
+
 ### Language Models
 A language model must be provided for each politician that can be selected in the talk show. A politician's language model must be saved in the following directory:
 
