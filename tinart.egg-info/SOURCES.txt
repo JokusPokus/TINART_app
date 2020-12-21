@@ -1,0 +1,17 @@
+MANIFEST.in
+README.md
+setup.py
+app/__init__.py
+app/language_model/__init__.py
+app/language_model/conversation.py
+app/language_model/inference.py
+app/language_model/sentiment.py
+app/language_model/views.py
+app/main/__init__.py
+app/main/views.py
+tinart.egg-info/PKG-INFO
+tinart.egg-info/SOURCES.txt
+tinart.egg-info/dependency_links.txt
+tinart.egg-info/not-zip-safe
+tinart.egg-info/requires.txt
+tinart.egg-info/top_level.txt
